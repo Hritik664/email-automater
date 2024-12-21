@@ -26,7 +26,7 @@ def track_email(email_id):
     with open(EMAIL_LOG_FILE, "a") as log_file:
         log_entry = f"[{datetime.now()}] Email opened: {email_id}\n"
         log_file.write(log_entry)
-        print(log_entry.strip())  # For debugging in Render logs
+        print(log_entry.strip())  # For debugging locally or on Render logs
 
     # Send a 1x1 transparent pixel
     return send_file(
@@ -47,6 +47,16 @@ def get_logs():
     else:
         return jsonify({"error": "No logs found"}), 404
 
+@app.route("/download_logs", methods=["GET"])
+def download_logs():
+    """
+    Endpoint to download the email opens log file.
+    """
+    if os.path.exists(EMAIL_LOG_FILE):
+        return send_file(EMAIL_LOG_FILE, as_attachment=True)
+    else:
+        return jsonify({"error": "No logs found"}), 404
+
 # Ensure a 1x1 transparent image exists
 if not os.path.exists("1x1.png"):
     from PIL import Image
@@ -55,5 +65,5 @@ if not os.path.exists("1x1.png"):
 
 # Run the server
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Render uses $PORT
+    port = int(os.environ.get("PORT", 5000))  # Render uses $PORT; locally defaults to 5000
     app.run(host="0.0.0.0", port=port)
