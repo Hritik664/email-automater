@@ -1,5 +1,0 @@
-pandas
-openpyxl
-email-validator
-dotenv
-gunicorn
