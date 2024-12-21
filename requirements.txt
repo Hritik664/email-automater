@@ -1,5 +1,7 @@
 pandas
 openpyxl
 email-validator
-dotenv
+python-dotenv
 gunicorn
+flask
+pillow
