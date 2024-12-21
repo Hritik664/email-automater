@@ -14,23 +14,30 @@ EMAIL_LOG_FILE = os.path.join(LOGS_DIR, "email_opens.txt")
 
 @app.route("/")
 def home():
+    """
+    Health check route to confirm the server is running.
+    """
     return jsonify({"status": "Server is running"}), 200
 
-@app.route("/track/<email_id>.png")
-def track_email(email_id):
+@app.route("/track_open", methods=["GET"])
+def track_open():
     """
     Tracks email opens via a tracking pixel.
-    - Logs the email ID, timestamp, and request metadata.
+    - Logs the email ID and timestamp.
     """
+    email_id = request.args.get("email")
+    if not email_id:
+        return jsonify({"error": "Email parameter is missing"}), 400
+
     # Log the event
+    log_entry = f"[{datetime.now()}] Email opened: {email_id}\n"
     with open(EMAIL_LOG_FILE, "a") as log_file:
-        log_entry = f"[{datetime.now()}] Email opened: {email_id}\n"
         log_file.write(log_entry)
-        print(log_entry.strip())  # For debugging locally or on Render logs
+    print(f"✅ Logged email open: {log_entry.strip()}")  # For debugging
 
     # Send a 1x1 transparent pixel
     return send_file(
-        "1x1.png",  # Use an actual 1x1 transparent image
+        "1x1.png",
         mimetype="image/png",
         conditional=True
     )
