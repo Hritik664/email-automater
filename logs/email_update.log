@@ -1,0 +1,6 @@
+2024-12-20 21:22:26,521 - Successfully read input file: ./data/Hr_emails.xlsx
+2024-12-20 21:28:05,845 - Successfully read input file: ./data/Hr_emails.xlsx
+2024-12-20 21:28:06,227 - Successfully saved updated file: ./data/hr_updated.xlsx
+2024-12-20 21:28:06,245 - Total records processed: 464
+2024-12-20 21:28:06,245 - Successfully updated records: 464
+2024-12-20 21:28:06,246 - Total invalid emails: 0

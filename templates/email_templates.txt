@@ -1,0 +1,22 @@
+Subject: Excited About Opportunities at {company_name}
+
+Hi {name},
+
+I hope you're doing well. My name is Hritik Singh, and I’m a passionate Software Engineer with expertise in Full-Stack Development, Python Automation, and Data Structures.
+
+I’m reaching out to express my interest in potential roles at {company_name}. I’ve always admired {mention_specific_qualities}, and I believe my technical skills in MERN stack development, problem-solving, and process automation can contribute meaningfully to your team.
+
+One of the unique aspects of this email is that it’s sent using an **email automation system that I personally developed**. The system allows me to streamline outreach while still maintaining personalization and relevance for each company I contact. By designing and building this tool from scratch, I’ve enhanced my skills in **Python scripting, automation, and process optimization** — all of which I believe are transferable to roles at {company_name}.
+
+For a more comprehensive look at my work and experience, you can check out my:  
+- 📘 [LinkedIn](https://www.linkedin.com/in/hritik-singh-50b355227/) — Explore my projects and certifications.  
+- 💻 [GitHub](https://github.com/hritik664) — See live examples of my technical contributions.  
+
+I would love the chance to discuss how my experience and technical problem-solving approach could contribute to your team. If you'd be open to a conversation, I’d be happy to connect at a time that works best for you.
+
+Looking forward to your response.
+
+Best regards,  
+Hritik Singh  
+Email: singhhritik560@gmail.com  
+Phone: +91 9335328103  
