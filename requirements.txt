@@ -3,3 +3,4 @@ openpyxl
 smtplib
 email-validator
 dotenv
+gunicorn

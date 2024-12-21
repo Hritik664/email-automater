@@ -1,4 +1,0 @@
-START_INDEX=0
-EMAIL=singhhritik560@gmail.com
-EMAIL_PASSWORD=svpe gllv nspn qijn
-RESUME_LINK = https://drive.google.com/file/d/18V-0BQZSBGwjUfZ1RGog_lnlt07gWWoB/view?usp=sharing

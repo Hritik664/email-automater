@@ -1,14 +1,59 @@
-from flask import Flask, request
-import datetime
+from flask import Flask, request, send_file, jsonify
+from datetime import datetime
+import os
 
+# Initialize Flask app
 app = Flask(__name__)
 
-@app.route('/track_open', methods=['GET'])
-def track_open():
-    email = request.args.get('email')
-    with open('logs/email_opens.txt', 'a') as f:
-        f.write(f"Email opened by: {email} at {datetime.datetime.now()}\n")
-    return b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\xf0\x00\x00\xff\xff\xff\x00\x00\x00!\xf9\x04\x01\x00\x00\x00\x00,\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00;'
+# Ensure logs directory exists
+LOGS_DIR = "logs"
+if not os.path.exists(LOGS_DIR):
+    os.makedirs(LOGS_DIR)
 
+EMAIL_LOG_FILE = os.path.join(LOGS_DIR, "email_opens.txt")
+
+@app.route("/")
+def home():
+    return jsonify({"status": "Server is running"}), 200
+
+@app.route("/track/<email_id>.png")
+def track_email(email_id):
+    """
+    Tracks email opens via a tracking pixel.
+    - Logs the email ID, timestamp, and request metadata.
+    """
+    # Log the event
+    with open(EMAIL_LOG_FILE, "a") as log_file:
+        log_entry = f"[{datetime.now()}] Email opened: {email_id}\n"
+        log_file.write(log_entry)
+        print(log_entry.strip())  # For debugging in Render logs
+
+    # Send a 1x1 transparent pixel
+    return send_file(
+        "1x1.png",  # Use an actual 1x1 transparent image
+        mimetype="image/png",
+        conditional=True
+    )
+
+@app.route("/logs", methods=["GET"])
+def get_logs():
+    """
+    Returns the log file containing tracked email opens.
+    """
+    if os.path.exists(EMAIL_LOG_FILE):
+        with open(EMAIL_LOG_FILE, "r") as log_file:
+            logs = log_file.read()
+        return jsonify({"logs": logs}), 200
+    else:
+        return jsonify({"error": "No logs found"}), 404
+
+# Ensure a 1x1 transparent image exists
+if not os.path.exists("1x1.png"):
+    from PIL import Image
+    img = Image.new("RGBA", (1, 1), (255, 255, 255, 0))  # Transparent pixel
+    img.save("1x1.png")
+
+# Run the server
 if __name__ == "__main__":
-    app.run(port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Render uses $PORT
+    app.run(host="0.0.0.0", port=port)
