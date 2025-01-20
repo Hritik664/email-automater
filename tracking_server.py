@@ -70,18 +70,6 @@ if not os.path.exists("1x1.png"):
     img = Image.new("RGBA", (1, 1), (255, 255, 255, 0))  # Transparent pixel
     img.save("1x1.png")
 
-@app.route("/clear_logs", methods=["POST"])
-def clear_logs():
-    """
-    Clears the log file containing tracked email opens.
-    """
-    if os.path.exists(EMAIL_LOG_FILE):
-        with open(EMAIL_LOG_FILE, "w") as log_file:
-            log_file.write("")  # Empty the file
-        return jsonify({"status": "success", "message": "Logs cleared successfully."}), 200
-    else:
-        return jsonify({"status": "error", "message": "Log file not found."}), 404
-
 
 # Run the server
 if __name__ == "__main__":
