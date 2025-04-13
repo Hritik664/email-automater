@@ -66,8 +66,8 @@ email-automater/
 
 ## 🔐 Note
 
-This repo is currently **private**.  
-📩 Contact me for access — code available on request due to NDA/confidentiality.
+This repo code is not uploaded completely 
+📩 Contact me for access — complete code available on request due to NDA/confidentiality.
 
 ---
 
